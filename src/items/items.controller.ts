@@ -8,6 +8,7 @@ import {
   Param,
 } from '@nestjs/common';
 import { ItemsService } from './items.service';
+import { createItemDTO } from './DTO/create-item-dto';
 
 @Controller('items')
 export class ItemsController {
@@ -19,17 +20,22 @@ export class ItemsController {
     return issues;
   }
 
-  // @Get(':id')
-  // async findOne(@Param('id') id) {
+  //   @Get(':id')
+  //   async findOne(@Param('id') id) {
   //     const issue = await this.issuesService.findOne(id);
   //     return issue;
-  // }
+  //   }
 
-  // @Post()
-  // async create(@Body() createIssueDto: CreateIssueDto) {
-  //     const issue = await this.issuesService.create(createIssueDto)
-  //     return issue;
-  // }
+  @Post()
+  async create(@Body() createItemDTO: createItemDTO): string {
+    return `Name: ${createItemDTO.name} Description: ${createItemDTO.description}`;
+  }
+
+  //   @Post()
+  //   async create(@Body() createItemDTO: createItemDTO) {
+  //       const issue = await this.issuesService.create(createItemDTO);
+  //       return issue;
+  //   }
 
   // //endpoint for delete is /issues/?issueId=4
   // @Delete()
@@ -39,8 +45,8 @@ export class ItemsController {
   // }
 
   // @Put(':id')
-  // async update(@Body() createIssueDto: CreateIssueDto, @Param('id') id) {
-  //     const issues = this.issuesService.update(createIssueDto, id);
+  // async update(@Body() createItemDTO: createItemDTO, @Param('id') id) {
+  //     const issues = this.issuesService.update(createItemDTO, id);
   //     return issues
   // }
 }
